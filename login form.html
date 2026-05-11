@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Premium Login</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0f172a;
+    overflow: hidden;
+}
+
+/* Cursor Glow */
+.glow {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,255,200,0.2), transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: 0.05s;
+}
+
+.container {
+    width: 320px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    text-align: center;
+    color: #e2e8f0;
+    position: relative;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.input-group input:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.input-group input:focus {
+    box-shadow: 0 0 10px rgba(0,255,200,0.5);
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-size: 14px;
+    color: #94a3b8;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -8px;
+    left: 10px;
+    font-size: 11px;
+    background: #0f172a;
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.password-toggle:hover {
+    opacity: 1;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #00ffc3, #00aaff);
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Ripple effect */
+button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+button:active::after {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+    transition: 0s;
+}
+
+.footer {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.footer a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow" id="glow"></div>
+
+<div class="container">
+    <h2>Welcome Back</h2>
+
+    <div class="input-group">
+        <input type="text" required>
+        <label>Username</label>
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="password" required>
+        <label>Password</label>
+        <span class="password-toggle" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button>Login</button>
+
+    <div class="footer">
+        Forgot password? <a href="#">Reset</a>
+    </div>
+</div>
+
+<script>
+// Cursor glow follow
+const glow = document.getElementById("glow");
+
+document.addEventListener("mousemove", (e) => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
+
+// Toggle password
+function togglePassword() {
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>
